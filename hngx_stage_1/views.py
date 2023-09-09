@@ -16,7 +16,7 @@ def index(request):
       "current_day": datetime.datetime.today().strftime('%A'),
       "utc_time": datetime.datetime.now(datetime.timezone.utc),
       "track": "backend",
-      "github_file_url": "https://github.com/username/repo/blob/main/file_name.ext",
+      "github_file_url": "https://github.com/mashm3ll0w/hngx_stage_1/blob/main/hngx_stage_1/views.py",
       "github_repo_url": "https://github.com/mashm3ll0w/hngx_stage_1",
       "status_code": HttpResponse.status_code
     }
