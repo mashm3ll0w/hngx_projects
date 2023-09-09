@@ -10,7 +10,7 @@ def index(request):
     param_track = request.GET['track']
     slack_name = "Charles Swaleh"
 
-    if param_username.lower() == slack_name.lower() and param_track.lower() == "backend":
+    if param_username.lower() == "swaleh" and param_track.lower() == "backend":
       data = {
       "slack_name": "Charles Swaleh",
       "current_day": datetime.datetime.today().strftime('%A'),
