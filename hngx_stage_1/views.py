@@ -14,7 +14,7 @@ def index(request):
       data = {
       "slack_name": "Charles Swaleh",
       "current_day": datetime.datetime.today().strftime('%A'),
-      "utc_time": datetime.datetime.now(datetime.timezone.utc),
+      "utc_time": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
       "track": "backend",
       "github_file_url": "https://github.com/mashm3ll0w/hngx_stage_1/blob/main/hngx_stage_1/views.py",
       "github_repo_url": "https://github.com/mashm3ll0w/hngx_stage_1",
