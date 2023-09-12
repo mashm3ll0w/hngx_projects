@@ -170,7 +170,7 @@ Delete a person entry.
 
 ## Testing
 
-Run the command:
+Testing is done using Django's native test toolkit. Run the tests using the command:
 
 ```bash
 python manage.py test
