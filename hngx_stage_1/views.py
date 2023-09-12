@@ -1,13 +1,21 @@
-from http import HTTPStatus
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, JsonResponse
 from .models import Person
+import json
 # Create your views here.
 
+@csrf_exempt
 def index(request):
   if request.method == "GET":
     names = Person.objects.all()
     persons = [person.serialize() for person in names]
     return JsonResponse({"persons": persons}, safe=False)
+  elif request.method == "POST":
+    data = json.loads(request.body)
+    # add the person to the database
+    new_user = Person(name=data.get("name").title())
+    new_user.save()
+    return JsonResponse(new_user.serialize(), status=201, safe=False)
 
 
 def view_user(request, username):
