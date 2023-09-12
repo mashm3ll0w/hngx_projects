@@ -156,10 +156,16 @@ Delete a person entry.
    pip install -r requirements.txt
    ```
 
-6. Start the server:
+6. Create an `.env` file to hold your secrets (**Please change the SECRET_KEY**):
 
    ```bash
-   ALLOWED_HOSTS="*" SECRET_KEY="your-secret-key" DEBUG=1 gunicorn stage_1.wsgi:application
+   echo "SECRET_KEY="0197320918cn09831c908n9023u4hc918-7918-4t791-4398v659"\nDEBUG=True\nALLOWED_HOSTS=['*']" > .env
+   ```
+
+7. Start the server:
+
+   ```bash
+   gunicorn stage_1.wsgi:application
    ```
 
 ## Testing
