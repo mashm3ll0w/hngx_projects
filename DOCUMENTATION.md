@@ -23,7 +23,7 @@ Documentation for the Person API with expected request and response examples.
 
 Retrieve a list of all persons.
 
-- **URL**: `/api`
+- **URL**: `/api/`
 - **Method**: `GET`
 - **Request**: None
 - **Response**:
@@ -59,7 +59,7 @@ Retrieve a list of all persons.
 
 Create a new person entry.
 
-- **URL**: `/api`
+- **URL**: `/api/`
 - **Method**: `POST`
 - **Request**:
 
@@ -70,6 +70,7 @@ Create a new person entry.
   ```
 
 - **Response** (HTTP Status Code 201: Created)
+
 ```json
   {
     "id": 6,

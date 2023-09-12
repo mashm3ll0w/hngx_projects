@@ -94,7 +94,7 @@ Ensure you have [Python](https://www.python.org/) version 3.9.2 or above  instal
 To retrieve a list of all persons, make a GET request to the following endpoint:
 
 ```bash
-GET /api
+GET /api/
 ```
 
 ### Fetch a Specific Person
@@ -110,7 +110,7 @@ GET /api/:name
 To create a new person record, make a POST request to the following endpoint:
 
 ```bash
-POST /api
+POST /api/
 ```
 
 Set the `Content-Type` header to `application/json`, and include the person's information (name only) in the request body in JSON format, like this:
