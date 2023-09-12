@@ -1,7 +1,7 @@
-from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from .models import Person
 import json
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 @csrf_exempt
@@ -17,14 +17,29 @@ def index(request):
     new_user.save()
     return JsonResponse(new_user.serialize(), status=201, safe=False)
 
+@csrf_exempt
+def update_user(request, user_id):
+  if request.method == "PATCH" or request.method == "PUT":
+    if type(user_id) != int:
+      return JsonResponse({"Error": "Please enter a person's id"}, safe=False)
+
+    try:
+      user = Person.objects.get(pk=user_id)
+      data = json.loads(request.body)
+      user.name = data.get("name")
+      user.save()
+      return JsonResponse(user.serialize(), safe=False)
+    except Person.DoesNotExist:
+      return JsonResponse({"Error": "Person not found"}, status=404, safe=False)
 
 def view_user(request, username):
-  if type(username) != str:
-    return JsonResponse({"Error": "Please enter a person's name as a string"}, safe=False)
+  if request.method == "GET":
+    if type(username) != str:
+      return JsonResponse({"Error": "Please enter a person's name as a string"}, safe=False)
 
-  username = username.title()
-  try:
-    user = Person.objects.get(name=username)
-    return JsonResponse(user.serialize(), safe=False)
-  except Person.DoesNotExist:
-    return JsonResponse({"Error": "Person not found"}, status=404, safe=False)
+    username = username.title()
+    try:
+      user = Person.objects.get(name=username)
+      return JsonResponse(user.serialize(), safe=False)
+    except Person.DoesNotExist:
+      return JsonResponse({"Error": "Person not found"}, status=404, safe=False)
