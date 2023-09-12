@@ -32,6 +32,14 @@ def update_user(request, user_id):
     except Person.DoesNotExist:
       return JsonResponse({"Error": "Person not found"}, status=404, safe=False)
 
+  elif request.method == "DELETE":
+    try:
+      user = Person.objects.get(pk=user_id)
+      user.delete()
+      return JsonResponse({}, status=204, safe=False)
+    except Person.DoesNotExist:
+      return JsonResponse({"Error": "Person not found"}, status=404, safe=False)
+
 def view_user(request, username):
   if request.method == "GET":
     if type(username) != str:
