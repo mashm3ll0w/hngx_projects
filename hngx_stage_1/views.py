@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from .models import Person
-import json
+import ast
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
@@ -11,7 +11,7 @@ def index(request):
     persons = [person.serialize() for person in names]
     return JsonResponse({"persons": persons}, safe=False)
   elif request.method == "POST":
-    data = json.loads(request.body)
+    data = ast.literal_eval(request.body.decode("UTF-8"))
     # add the person to the database
     new_user = Person(name=data.get("name").title())
     new_user.save()
@@ -25,7 +25,7 @@ def update_user(request, user_id):
 
     try:
       user = Person.objects.get(pk=user_id)
-      data = json.loads(request.body)
+      data = ast.literal_eval(request.body.decode("UTF-8"))
       user.name = data.get("name")
       user.save()
       return JsonResponse(user.serialize(), safe=False)
